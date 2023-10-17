@@ -54,26 +54,13 @@ export async function create(postedPollData: PollData) {
         }
     }
 }
-async function findOneByUuid(uuid: string, options = {}) {
-    const baseQuery = `
-        SELECT
-          *
-        FROM
-          polls
-        WHERE
-          id = $1
-        LIMIT
-          1
-       `;
+export async function findOneById(id: string, computeVotes: boolean = false, options = {}) {
+    const pollResults = (await database.query({
+        text: "SELECT * FROM polls WHERE id = $1 LIMIT 1",
+        values: [id],
+    }, options));
 
-    const query = {
-        text: baseQuery,
-        values: [uuid],
-    };
-
-    const results = await database.query(query, options);
-
-    if (results.rowCount === 0) {
+    if (pollResults.rowCount === 0) {
         throw new NotFoundError({
             message: `O "uuid" informado não foi encontrado no sistema.`,
             action: 'Verifique se o "uuid" está digitado corretamente.',
@@ -83,5 +70,49 @@ async function findOneByUuid(uuid: string, options = {}) {
         });
     }
 
-    return results.rows[0];
+    let optionsResults;
+
+    if (computeVotes) {
+        optionsResults = (await database.query({
+            text: `SELECT poll_options.*, COUNT(poll_option_votes) as votes FROM poll_options
+                   JOIN poll_option_votes ON poll_options.id = poll_option_votes.poll_option_id
+                   WHERE poll_id = $1 
+                   GROUP BY poll_options.id
+                   LIMIT 5`,
+            values: [id],
+        }, options));
+    } else {
+        optionsResults = (await database.query({
+            text: "SELECT * FROM poll_options WHERE poll_id = $1 LIMIT 5",
+            values: [id],
+        }, options));
+    }
+
+
+    return {
+        ...pollResults.rows[0],
+        options: optionsResults.rows
+    }
+}
+
+export async function computeVoteByOptionId(id: string, options = {}) {
+    const optionExists = (await database.query({
+        text: "SELECT count(*) as count FROM poll_options WHERE id = $1 LIMIT 1",
+        values: [id],
+    }, options)).rows[0].count === '1';
+
+    if (!optionExists) {
+        throw new NotFoundError({
+            message: `O "uuid" informado não foi encontrado no sistema.`,
+            action: 'Verifique se o "uuid" está digitado corretamente.',
+            stack: new Error().stack,
+            errorLocationCode: 'MODEL:POLL:VOTE_BY_OPTION_ID:NOT_FOUND',
+            key: 'uuid',
+        });
+    }
+
+    await database.query({
+        text: "INSERT INTO poll_option_votes (poll_option_id) VALUES ($1)",
+        values: [id]
+    })
 }

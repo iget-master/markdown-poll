@@ -11,10 +11,15 @@ type PollOptionImageProps = {
 export async function GET(request: NextRequest, { params: {id, index} }: PollOptionImageProps) {
     const poll = await findOneById(id, true);
     const option = poll.options.find((option: any) => option.index === parseInt(index))
-    const totalVotes = poll.options.reduce((acc: number, current: PollOption) => acc + current.votes, 0)
 
-    const optionVotes = option.votes;
-    const percentage = Math.round(100*(optionVotes / totalVotes));
+    if (!option) {
+        return new NextResponse('Option not found.', {status: 404})
+    }
+
+    const totalVotes = poll.options.reduce((acc: number, current: PollOption) => acc + (current.votes ?? 0), 0)
+
+    const optionVotes = option.votes ?? 0;
+    const percentage = optionVotes ? Math.round(100*(optionVotes / totalVotes)) : 0;
 
     const text = `${option.title} (${percentage}%)`;
 

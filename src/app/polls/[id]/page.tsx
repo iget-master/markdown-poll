@@ -1,5 +1,7 @@
 import { findOneById } from '@/models/poll';
 import Link from "next/link";
+import { ClipboardDocumentIcon } from '@heroicons/react/24/solid'
+import CopyButton from "@/ui/copy-button";
 
 type PollPageProps = {
     params: {
@@ -18,7 +20,7 @@ export default async function Page(props: PollPageProps) {
 
     const optionsList = poll.options.map(({index, title, votes}: any) => {
         return (
-            <li key={index} >
+            <li key={index} className={"mb-1"} >
                 <Link href={`/polls/${poll.id}/vote?option=${index}`}>
                     <img src={`/api/polls/${poll.id}/options/${index}/img`} />
                 </Link>
@@ -30,25 +32,61 @@ export default async function Page(props: PollPageProps) {
         return `<a href="${BASE_URL}/polls/${poll.id}/vote?option=${index}&close" target="_blank">
   <img src="${BASE_URL}/api/polls/${poll.id}/options/${index}/img" alt="${title}"/>
 </a>`
-    }).join(`\n\n`);
+    }).join(`\n<br/>\n`);
 
-    const markdown = `
-${poll.title}
+    const markdown = `${poll.title}
 
-Choose one option:
+${markdownOptionsList}
+<br/>
+<small>Click on the option you want to vote.</small>`
 
-${markdownOptionsList}`
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(markdown);
+    }
+
+    if (typeof window === 'object') {
+        function copyToClipboard() {
+            const copyText = document.getElementById("markdown");
+
+            console.log(copyText, copyText?.innerHTML);
+            // // Select the text field
+            // copyText.select();
+            // copyText.setSelectionRange(0, 99999); // For mobile devices
+            //
+            // // Copy the text inside the text field
+            // navigator.clipboard.writeText(copyText.value);
+            //
+            // // Alert the copied text
+            // alert("Copied the text: " + copyText.value);
+        }
+        document.getElementById("copyToClipboardButton")?.addEventListener("click", copyToClipboard);
+        console.log('cu');
+    }
 
     return (<>
-        <h1>{poll.title}</h1>
-        <ul>
-            {optionsList}
-        </ul>
+
+        <h2 className={"pt-4 mb-1 text-xl font-medium"}>Poll preview</h2>
+        <h3 className={"mb-2"}>Your poll will show like this on markdown: </h3>
+        <blockquote className={"ml-2 p-2 bg-gray-100"}>
+            <h1>{poll.title}</h1>
+            <ul>
+                {optionsList}
+            </ul>
+            <small>Click on the option you want to vote.</small>`
+        </blockquote>
+
         {/* if close flag was sent, we try to close the popup tab */}
         {close &&
             <script type="text/javascript">window.close();</script>
         }
-        <pre>
+
+        <h2 className={"pt-4 pb-1 text-xl font-medium"}>
+            Copy and paste this html into your markdown
+        </h2>
+
+        <CopyButton text={markdown}/>
+
+        <pre id="markdown" className={"ml-2 p-2 bg-gray-100 overflow-x-scroll"}>
             {markdown}
         </pre>
     </>)

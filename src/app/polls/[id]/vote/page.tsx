@@ -20,6 +20,10 @@ export default async function Page({params: {id}, searchParams: {option: optionI
     }
     const option = poll.options.find((option: any) => option.index === parseInt(optionIndex))
 
+    if (!option) {
+        return (<>Option not found.</>)
+    }
+
     await computeVoteByOptionId(option.id);
 
     redirect(`/polls/${id}` + ((shouldClose !== undefined) ? '?close' : ''));

@@ -7,6 +7,8 @@ type PollPageProps = {
     }
     searchParams: { [key: string]: string | string[] | undefined }
 }
+
+const BASE_URL = process.env.BASE_URL;
 export default async function Page(props: PollPageProps) {
     const { params: {id}, searchParams } = props;
     const justCreated = searchParams.justcreated !== undefined;
@@ -18,11 +20,24 @@ export default async function Page(props: PollPageProps) {
         return (
             <li key={index} >
                 <Link href={`/polls/${poll.id}/vote?option=${index}`}>
-                    {index + 1}. {title} ({votes})
+                    <img src={`/api/polls/${poll.id}/options/${index}/img`} />
                 </Link>
             </li>
         );
     })
+
+    const markdownOptionsList = poll.options.map(({index, title, votes}: any) => {
+        return `<a href="${BASE_URL}/polls/${poll.id}/vote?option=${index}&close" target="_blank">
+  <img src="${BASE_URL}/api/polls/${poll.id}/options/${index}/img" alt="${title}"/>
+</a>`
+    }).join(`\n\n`);
+
+    const markdown = `
+${poll.title}
+
+Choose one option:
+
+${markdownOptionsList}`
 
     return (<>
         <h1>{poll.title}</h1>
@@ -33,5 +48,8 @@ export default async function Page(props: PollPageProps) {
         {close &&
             <script type="text/javascript">window.close();</script>
         }
+        <pre>
+            {markdown}
+        </pre>
     </>)
 }

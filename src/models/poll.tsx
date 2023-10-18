@@ -6,6 +6,19 @@ export type PollData = {
     title: string,
     options: string[]
 }
+
+export type PollOption = {
+    id: string,
+    poll_id: string,
+    title: string,
+    votes?: number,
+};
+
+export type Poll = {
+    id: string,
+    title: string,
+    options: Array<PollOption>
+};
 function validatePostSchema(postedPollData: PollData) {
     return validator(postedPollData, {
         title: 'required',
@@ -54,7 +67,7 @@ export async function create(postedPollData: PollData) {
         }
     }
 }
-export async function findOneById(id: string, computeVotes: boolean = false, options = {}) {
+export async function findOneById(id: string, computeVotes: boolean = false, options = {}): Promise<Poll> {
     const pollResults = (await database.query({
         text: "SELECT * FROM polls WHERE id = $1 LIMIT 1",
         values: [id],
@@ -91,7 +104,10 @@ export async function findOneById(id: string, computeVotes: boolean = false, opt
 
     return {
         ...pollResults.rows[0],
-        options: optionsResults.rows
+        options: optionsResults.rows.map((option: any) => ({
+            ...option,
+            votes: typeof option.votes === 'string' ? parseInt(option.votes) : option.votes
+        }))
     }
 }
 

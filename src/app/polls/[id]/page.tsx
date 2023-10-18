@@ -40,29 +40,6 @@ ${markdownOptionsList}
 <br/>
 <small>Click on the option you want to vote.</small>`
 
-    const copyToClipboard = () => {
-        navigator.clipboard.writeText(markdown);
-    }
-
-    if (typeof window === 'object') {
-        function copyToClipboard() {
-            const copyText = document.getElementById("markdown");
-
-            console.log(copyText, copyText?.innerHTML);
-            // // Select the text field
-            // copyText.select();
-            // copyText.setSelectionRange(0, 99999); // For mobile devices
-            //
-            // // Copy the text inside the text field
-            // navigator.clipboard.writeText(copyText.value);
-            //
-            // // Alert the copied text
-            // alert("Copied the text: " + copyText.value);
-        }
-        document.getElementById("copyToClipboardButton")?.addEventListener("click", copyToClipboard);
-        console.log('cu');
-    }
-
     return (<>
 
         <h2 className={"pt-4 mb-1 text-xl font-medium"}>Poll preview</h2>
@@ -72,7 +49,7 @@ ${markdownOptionsList}
             <ul>
                 {optionsList}
             </ul>
-            <small>Click on the option you want to vote.</small>`
+            <small>Click on the option you want to vote.</small>
         </blockquote>
 
         {/* if close flag was sent, we try to close the popup tab */}

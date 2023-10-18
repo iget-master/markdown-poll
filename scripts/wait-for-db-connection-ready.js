@@ -26,7 +26,7 @@ const healthCheckDB = async () => {
                         return;
                     }
 
-                    const reason = 'Failed to connect to database. A new attempt will be made in 3 seconds ...' + stdout;
+                    const reason = 'Failed to connect to database. A new attempt will be made in 3 seconds ...';
                     console.log(reason);
 
                     reject(reason);

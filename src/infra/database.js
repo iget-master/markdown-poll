@@ -25,7 +25,9 @@ if (!webserver.isServerlessRuntime) {
     configurations.max = 30;
 
     // https://github.com/filipedeschamps/tabnews.com.br/issues/84
-    configurations.ssl = true;
+    delete configurations.ssl;
+
+    configurations.dialectOptions = {ssl: true}
 }
 
 const cache = {

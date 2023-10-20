@@ -13,17 +13,17 @@
     "migration:run": "node-pg-migrate up --envPath ./.env -m src/infra/migrations/",
     "migration:dry-run": "node-pg-migrate up --dry-run --envPath ./.env -m src/infra/migrations",
     "migration:seed": "node -r dotenv-expand/config src/infra/scripts/seed-database.js",
-    "vercel-build": "yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel giflib-devel"
+    "vercel-build": "yum install gcc-c++ cairo-devel libjpeg-turbo-devel pango-devel giflib-devel -y"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "async-retry": "^1.3.3",
-    "canvas": "2.8.0",
-    "jsdom": "19.0.0",
+    "canvas": "~2.8.0",
     "dotenv": "^16.3.1",
     "dotenv-expand": "^10.0.0",
     "heroicons": "^2.0.18",
     "joi": "^17.11.0",
+    "jsdom": "19.0.0",
     "next": "13.5.5",
     "node-pg-migrate": "^6.2.2",
     "pg": "^8.11.3",

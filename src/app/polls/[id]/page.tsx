@@ -1,6 +1,7 @@
 import { findOneById } from '@/models/poll';
 import Link from "next/link";
 import CopyButton from "@/ui/copy-button";
+export const dynamic = 'force-dynamic'
 
 type PollPageProps = {
     params: {

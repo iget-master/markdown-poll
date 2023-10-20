@@ -1,5 +1,6 @@
 import {getStatistics} from "@/models/poll";
 
+export const dynamic = 'force-dynamic'
 export default async function Page() {
     const {
         pollsCount,

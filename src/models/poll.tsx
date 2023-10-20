@@ -25,7 +25,7 @@ function validatePostSchema(postedPollData: PollData) {
         options: 'required',
     });
 }
-export async function create(postedPollData: PollData) {
+export async function create(postedPollData: PollData, creator_ip: string|null) {
     const validPollData = validatePostSchema(postedPollData);
 
     return await runInsertQuery(validPollData);
@@ -37,8 +37,8 @@ export async function create(postedPollData: PollData) {
             await transaction.query('BEGIN');
 
             const poll = (await transaction.query({
-                text: 'INSERT INTO polls (title) VALUES ($1) RETURNING *;',
-                values: [validPollData.title]
+                text: 'INSERT INTO polls (title, creator_ip) VALUES ($1, $2) RETURNING *;',
+                values: [validPollData.title, creator_ip]
             })).rows[0];
 
             poll.options = [];

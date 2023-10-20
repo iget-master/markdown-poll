@@ -138,5 +138,24 @@ export async function computeVoteByOptionId(id: string, creator_ip: string|null,
     } catch (error) {
         return false;
     }
+}
 
+export async function getStatistics() {
+    const pollsCount = (await database.query({
+        text: "SELECT count(*) as count FROM polls;"
+    })).rows[0].count;
+
+    const optionsCount = (await database.query({
+        text: "SELECT count(*) as count FROM poll_options;"
+    })).rows[0].count;
+
+    const votesCount = (await database.query({
+        text: "SELECT count(*) as count FROM poll_option_votes;"
+    })).rows[0].count;
+
+    return {
+        pollsCount,
+        optionsCount,
+        votesCount,
+    }
 }

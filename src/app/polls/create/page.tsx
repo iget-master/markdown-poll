@@ -4,7 +4,7 @@ import {ChangeEvent, FormEvent, useCallback, useMemo, useState} from "react";
 import {useRouter} from "next/navigation";
 
 export default function Page() {
-    const [title, setTitle] = useState('123');
+    const [title, setTitle] = useState('');
     const [options, setOptions] = useState(['', ''])
     const router = useRouter()
 

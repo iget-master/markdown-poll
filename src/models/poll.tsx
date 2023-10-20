@@ -112,13 +112,13 @@ export async function findOneById(id: string, computeVotes: boolean = false, opt
     }
 }
 
-export async function computeVoteByOptionId(id: string, options = {}) {
-    const optionExists = (await database.query({
-        text: "SELECT count(*) as count FROM poll_options WHERE id = $1 LIMIT 1",
+export async function computeVoteByOptionId(id: string, creator_ip: string|null, options = {}) {
+    const poll_id = (await database.query({
+        text: "SELECT poll_id FROM poll_options WHERE id = $1 LIMIT 1",
         values: [id],
-    }, options)).rows[0].count === '1';
+    }, options)).rows[0]?.poll_id;
 
-    if (!optionExists) {
+    if (!poll_id) {
         throw new NotFoundError({
             message: `O "uuid" informado não foi encontrado no sistema.`,
             action: 'Verifique se o "uuid" está digitado corretamente.',
@@ -128,8 +128,15 @@ export async function computeVoteByOptionId(id: string, options = {}) {
         });
     }
 
-    await database.query({
-        text: "INSERT INTO poll_option_votes (poll_option_id) VALUES ($1)",
-        values: [id]
-    })
+    try {
+        console.log([id, poll_id, creator_ip]);
+        await database.query({
+            text: "INSERT INTO poll_option_votes (poll_option_id, poll_id, creator_ip) VALUES ($1, $2, $3)",
+            values: [id, poll_id, creator_ip]
+        })
+        return true;
+    } catch (error) {
+        return false;
+    }
+
 }

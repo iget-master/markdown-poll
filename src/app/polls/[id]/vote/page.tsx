@@ -1,6 +1,6 @@
 import {computeVoteByOptionId, findOneById} from "@/models/poll";
-import {ValidationError} from "@/infra/errors";
 import {redirect} from "next/navigation";
+import { headers } from 'next/headers'
 
 type PollVotePageProps = {
     params: {
@@ -13,7 +13,7 @@ type PollVotePageProps = {
 }
 export default async function Page({params: {id}, searchParams: {option: optionIndex, close: shouldClose}}: PollVotePageProps) {
     const poll = await findOneById(id);
-
+    const ip = headers().get('x-forwarded-for');
     if (!optionIndex?.match(/^\d+$/)) {
         // @todo: throw a correct error
         throw 'Invalid option index';
@@ -24,7 +24,7 @@ export default async function Page({params: {id}, searchParams: {option: optionI
         return (<>Option not found.</>)
     }
 
-    await computeVoteByOptionId(option.id);
+    const voted = await computeVoteByOptionId(option.id, ip);
 
     redirect(`/polls/${id}` + ((shouldClose !== undefined) ? '?close' : ''));
 }

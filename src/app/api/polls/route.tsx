@@ -12,6 +12,8 @@ export async function POST(request: Request) {
                 name: 'ValidationError',
                 message: error.message,
             }, {status: 400})
+        } else {
+            throw error;
         }
     }
 }

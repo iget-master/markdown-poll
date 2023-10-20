@@ -1,8 +1,6 @@
 import { findOneById } from '@/models/poll';
 import Link from "next/link";
-import { ClipboardDocumentIcon } from '@heroicons/react/24/solid'
 import CopyButton from "@/ui/copy-button";
-import { headers } from "next/headers";
 
 type PollPageProps = {
     params: {
@@ -13,8 +11,6 @@ type PollPageProps = {
 
 const BASE_URL = process.env.BASE_URL;
 export default async function Page(props: PollPageProps) {
-
-    console.log('ip', headers());
     const { params: {id}, searchParams } = props;
     const justCreated = searchParams.justcreated !== undefined;
     const close = searchParams.close !== undefined;

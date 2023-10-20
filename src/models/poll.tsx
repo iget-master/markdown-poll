@@ -91,12 +91,13 @@ export async function findOneById(id: string, computeVotes: boolean = false, opt
                    LEFT JOIN poll_option_votes ON poll_options.id = poll_option_votes.poll_option_id
                    WHERE poll_id = $1 
                    GROUP BY poll_options.id
+                   ORDER BY index
                    LIMIT 5`,
             values: [id],
         }, options));
     } else {
         optionsResults = (await database.query({
-            text: "SELECT * FROM poll_options WHERE poll_id = $1 LIMIT 5",
+            text: "SELECT * FROM poll_options WHERE poll_id = $1 ORDER BY index LIMIT 5",
             values: [id],
         }, options));
     }

@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "up": "docker compose -f environment/dev/docker-compose.yml up -d",
-    "down": "docker compose -f environment/dev/docker-compose.yml down -d",
+    "down": "docker compose -f environment/dev/docker-compose.yml down",
     "migration:create": "node-pg-migrate --migrations-dir src/infra/migrations create",
     "migration:run": "node-pg-migrate up --envPath ./.env -m src/infra/migrations/",
     "migration:dry-run": "node-pg-migrate up --dry-run --envPath ./.env -m src/infra/migrations",

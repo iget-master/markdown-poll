@@ -89,7 +89,7 @@ export async function findOneById(id: string, computeVotes: boolean = false, opt
         optionsResults = (await database.query({
             text: `SELECT poll_options.*, COUNT(poll_option_votes) as votes FROM poll_options
                    LEFT JOIN poll_option_votes ON poll_options.id = poll_option_votes.poll_option_id
-                   WHERE poll_id = $1 
+                   WHERE poll_options.poll_id = $1 
                    GROUP BY poll_options.id
                    ORDER BY index
                    LIMIT 5`,

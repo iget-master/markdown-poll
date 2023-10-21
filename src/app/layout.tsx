@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800 min-h-screen">
               {/* We've used 3xl here, but feel free to try other max-widths based on your needs */}
               <div className="mx-auto max-w-3xl">{children}</div>
           </div>

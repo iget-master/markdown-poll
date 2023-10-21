@@ -22,7 +22,7 @@ export default async function Page(props: PollPageProps) {
         return (
             <li key={index} className={"mb-1"} >
                 <Link href={`/polls/${poll.id}/vote?option=${index}`}>
-                    <img src={`/api/polls/${poll.id}/options/${index}/img?bg=ff634777&color=white&fontSize=12&bg_filled=tomato`} />
+                    <img src={`/api/polls/${poll.id}/options/${index}/img`} />
                 </Link>
             </li>
         );

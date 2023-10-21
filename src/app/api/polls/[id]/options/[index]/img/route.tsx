@@ -27,10 +27,10 @@ export async function GET(request: NextRequest, { params: {id, index} }: PollOpt
     const ctx = canvas.getContext('2d');
 
     ctx.fillStyle = '#EEEEEE'
-    ctx.fillRect(0, 0, 200, 34);
+    ctx.fillRect(0, 0, 250, 34);
 
     ctx.fillStyle = '#9999CC';
-    ctx.fillRect(0, 0, (optionVotes / totalVotes) * 200, 34);
+    ctx.fillRect(0, 0, (optionVotes / totalVotes) * 250, 34);
 
     ctx.fillStyle = 'black';
     ctx.font = '16px Helvetica';

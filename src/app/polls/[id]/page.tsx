@@ -22,7 +22,7 @@ export default async function Page(props: PollPageProps) {
         return (
             <li key={index} className={"mb-1"} >
                 <Link href={`/polls/${poll.id}/vote?option=${index}`}>
-                    <img src={`/api/polls/${poll.id}/options/${index}/img`} />
+                    <img src={`/api/polls/${poll.id}/options/${index}/img?bg=ff634777&color=white&fontSize=12&bg_filled=tomato`} />
                 </Link>
             </li>
         );
@@ -63,7 +63,7 @@ ${markdownOptionsList}
 
         <CopyButton text={markdown}/>
 
-        <pre id="markdown" className={"ml-2 p-2 bg-gray-100 overflow-x-scroll"}>
+        <pre id="markdown" className={"ml-2 p-2 bg-gray-100 text-black overflow-x-scroll"}>
             {markdown}
         </pre>
     </>)

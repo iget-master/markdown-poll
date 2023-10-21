@@ -14,6 +14,9 @@ type PollVotePageProps = {
 export default async function Page({params: {id}, searchParams: {option: optionIndex, close: shouldClose}}: PollVotePageProps) {
     const poll = await findOneById(id);
     const ip = headers().get('x-forwarded-for');
+
+    console.log(ip);
+
     if (!optionIndex?.match(/^\d+$/)) {
         // @todo: throw a correct error
         throw 'Invalid option index';

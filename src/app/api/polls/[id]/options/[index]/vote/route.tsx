@@ -30,7 +30,13 @@ export async function GET(request: NextRequest, { params: {id, index} }: PollOpt
     const voted = await computeVoteByOptionId(option.id, ip);
 
     if (voted) {
-        cookies().set(`poll-` + poll.id, option.index.toString(10) );
+        cookies().set(
+            `poll-` + poll.id,
+            option.index.toString(10),
+            {
+                sameSite: 'none'
+            }
+        );
     }
 
     redirect(`/polls/${id}` + ((shouldClose !== undefined) ? '?close' : ''));

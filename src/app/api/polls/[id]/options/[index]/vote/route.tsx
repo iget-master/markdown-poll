@@ -34,7 +34,8 @@ export async function GET(request: NextRequest, { params: {id, index} }: PollOpt
             `poll-` + poll.id,
             option.index.toString(10),
             {
-                sameSite: 'none'
+                sameSite: 'none',
+                secure: true
             }
         );
     }

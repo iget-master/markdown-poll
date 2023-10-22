@@ -38,18 +38,20 @@ export default async function Page(props: PollPageProps) {
 
 ${markdownOptionsList}
 <br/>
-<small>Click on the option you want to vote.</small>`
+<small>Click on the option you want to vote.</small><br><small>Poll created with <a href="{BASE_URL}">md-poll</a></small>`
 
     return (<>
 
         <h2 className={"pt-4 mb-1 text-xl font-medium"}>Poll preview</h2>
         <h3 className={"mb-2"}>Your poll will show like this on markdown: </h3>
-        <blockquote className={"ml-2 p-2 bg-gray-100"}>
+        <blockquote className={"ml-2 p-2 bg-slate-100 dark:bg-slate-600"}>
             <h1>{poll.title}</h1>
             <ul>
                 {optionsList}
             </ul>
             <small>Click on the option you want to vote.</small>
+            <br>
+            <small>Poll created with <a href="{BASE_URL}">md-poll</a></small>
         </blockquote>
 
         {/* if close flag was sent, we try to close the popup tab */}
@@ -63,7 +65,7 @@ ${markdownOptionsList}
 
         <CopyButton text={markdown}/>
 
-        <pre id="markdown" className={"ml-2 p-2 bg-gray-100 overflow-x-scroll"}>
+        <pre id="markdown" className={"ml-2 p-2 bg-slate-100 dark:bg-slate-600 overflow-x-scroll"}>
             {markdown}
         </pre>
     </>)

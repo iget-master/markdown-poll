@@ -76,7 +76,7 @@ export default function Page() {
                     id={"option-" + index}
                     onChange={handleChange}
                     value={options[index]}
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 dark:text-slate-100 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 dark:text-slate-100 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                     placeholder={'Enter your option label'}
                 />
                 {(index > 1) &&
@@ -115,7 +115,7 @@ export default function Page() {
                                         id="title"
                                         onChange={handleChange}
                                         value={title}
-                                        className="block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 dark:text-slate-100 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                        className="block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 dark:text-slate-100 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                                         placeholder="which ice cream do you prefer?"
                                     />
                                 </div>
@@ -136,7 +136,7 @@ export default function Page() {
                             >
                                 Add option
                             </button>
-                            <p className="mt-3 text-sm leading-6 text-slate-600 dark-text-slate-300">Add up to 5 options to your poll.</p>
+                            <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Add up to 5 options to your poll.</p>
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@ export default function Page() {
                 <button
                     type="submit"
                     disabled={!valid}
-                    className={"rounded-md px-3 py-2 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 " + (valid ? 'bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600 text-white' : 'bg-gray-300 text-black')}
+                    className={"rounded-md px-3 py-2 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 " + (valid ? 'bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600 text-white' : 'bg-slate-400 text-white')}
                 >
                     Save
                 </button>

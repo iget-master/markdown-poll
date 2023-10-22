@@ -96,15 +96,15 @@ export default function Page() {
         <form onSubmit={handleSubmit}>
             <div className="space-y-12 py-2">
                 <div className="border-b border-gray-900/10 pb-12">
-                    <h1 className="text-base font-semibold leading-7 text-gray-900">Create your Poll</h1>
-                    <p className="mt-1 text-sm leading-6 text-gray-600">
+                    <h1 className="text-base font-semibold leading-7 text-slate-900 dark:text-white">Create your Poll</h1>
+                    <p className="mt-1 text-sm leading-6 text-slate-500 dark:text-slate-400">
                         It&apos;s easy and fast to create a Markdown Poll. Just fill the form bellow, save and
                         receive necessary markdown to embed your poll.
                     </p>
 
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div className="sm:col-span-4">
-                            <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
                                 Poll question
                             </label>
                             <div className="mt-2">
@@ -123,7 +123,7 @@ export default function Page() {
                         </div>
 
                         <div className="col-span-full">
-                            <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white">
                                 Poll Options
                             </label>
                             <div className="mt-2">
@@ -136,19 +136,19 @@ export default function Page() {
                             >
                                 Add option
                             </button>
-                            <p className="mt-3 text-sm leading-6 text-gray-600">Add up to 5 options to your poll.</p>
+                            <p className="mt-3 text-sm leading-6 text-slate-500 dark-text-slate-400">Add up to 5 options to your poll.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="mt-6 flex items-center justify-end gap-x-6">
-                <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+                <button type="button" className="text-sm font-semibold leading-6 text-gray-900 dark-text-white">
                     Cancel
                 </button>
                 <button
                     type="submit"
                     disabled={!valid}
-                    className={"rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 " + (valid ? 'bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600' : 'bg-gray-300')}
+                    className={"rounded-md px-3 py-2 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 " + (valid ? 'bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600 text-white' : 'bg-gray-300 text-black')}
                 >
                     Save
                 </button>

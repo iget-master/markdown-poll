@@ -51,7 +51,7 @@ ${markdownOptionsList}
             </ul>
             <small>Click on the option you want to vote.</small>
             <br/>
-            <small>Poll created with <a href="{BASE_URL}">md-poll</a></small>
+            <small>Poll created with <a href={BASE_URL}>md-poll</a></small>
         </blockquote>
 
         {/* if close flag was sent, we try to close the popup tab */}

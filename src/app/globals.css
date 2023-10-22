@@ -26,3 +26,15 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+a {
+  @apply text-blue-800 dark:text-blue-400
+}
+
+h1 {
+  @apply text-3xl text-slate-900 dark:text-white font-semibold
+}
+
+h2 {
+  @apply text-xl text-slate-800 dark:text-gray-100
+}

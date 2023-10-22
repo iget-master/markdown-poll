@@ -1,0 +1,15 @@
+.label {
+    @apply mt-3 block text-sm font-medium leading-6 text-slate-900 dark:text-white
+}
+
+.inputWrapper {
+    @apply mt-1 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md dark:bg-slate-700
+}
+
+.inputWrapper > input {
+    @apply block flex-1 border-0 bg-transparent py-1.5 pl-2 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 sm:text-sm sm:leading-6 focus:outline-0
+}
+
+.formBody {
+    @apply mt-2 border-b dark:border-slate-700 border-slate-900/10 pb-12 grid grid-cols-1 gap-x-6
+}

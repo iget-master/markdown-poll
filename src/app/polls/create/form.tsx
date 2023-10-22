@@ -3,7 +3,7 @@
 import {ChangeEvent, FormEvent, useCallback, useMemo, useState} from "react";
 import {useRouter} from "next/navigation";
 import styles from "./form.module.css"
-import { XMarkIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { TrashIcon, PlusIcon } from '@heroicons/react/24/outline'
 
 const validateString = ((value: string) => (value.length >= 1) && (value.length <= 255));
 export default function Form() {
@@ -101,7 +101,7 @@ export default function Form() {
                         onClick={() => removeOption(index)}
                         className="inline-flex items-center rounded-full self-center mr-1 bg-red-500 p-1 text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
                     >
-                        <XMarkIcon className="h-5 w-5"/>
+                        <TrashIcon className="h-5 w-5"/>
                         <span className="hidden sm:inline pr-1">Remove</span>
                     </button>
                 }

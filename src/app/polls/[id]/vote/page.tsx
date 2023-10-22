@@ -1,6 +1,6 @@
 import {computeVoteByOptionId, findOneById} from "@/models/poll";
 import {redirect} from "next/navigation";
-import { headers } from 'next/headers'
+import {cookies, headers} from 'next/headers'
 
 type PollVotePageProps = {
     params: {
@@ -24,6 +24,7 @@ export default async function Page({params: {id}, searchParams: {option: optionI
         return (<>Option not found.</>)
     }
 
+    cookies().set(`poll-` + poll.id, option.index.toString(10) );
     const voted = await computeVoteByOptionId(option.id, ip);
 
     redirect(`/polls/${id}` + ((shouldClose !== undefined) ? '?close' : ''));

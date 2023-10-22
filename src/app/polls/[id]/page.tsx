@@ -21,7 +21,7 @@ export default async function Page(props: PollPageProps) {
     const optionsList = poll.options.map(({index, title, votes}: any) => {
         return (
             <li key={index} className={"mb-1"} >
-                <Link href={`/polls/${poll.id}/vote?option=${index}`}>
+                <Link href={`/api/polls/${poll.id}/options/${index}/vote`}>
                     <img src={`/api/polls/${poll.id}/options/${index}/img`} />
                 </Link>
             </li>
@@ -29,7 +29,7 @@ export default async function Page(props: PollPageProps) {
     })
 
     const markdownOptionsList = poll.options.map(({index, title, votes}: any) => {
-        return `<a href="${BASE_URL}/polls/${poll.id}/vote?option=${index}&close" target="_blank">
+        return `<a href="${BASE_URL}/api/polls/${poll.id}/options/${index}/vote?close" target="_blank">
   <img src="${BASE_URL}/api/polls/${poll.id}/options/${index}/img" alt="${title}"/>
 </a>`
     }).join(`\n<br/>\n`);
@@ -45,7 +45,7 @@ ${markdownOptionsList}
         <h2 className={"pt-4 mb-1 text-xl font-medium"}>Poll preview</h2>
         <h3 className={"mb-2"}>Your poll will show like this on markdown: </h3>
         <blockquote className={"ml-2 p-2 bg-slate-100 dark:bg-slate-600"}>
-            <h1>{poll.title}</h1>
+            <h2>{poll.title}</h2>
             <ul>
                 {optionsList}
             </ul>

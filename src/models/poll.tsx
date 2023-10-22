@@ -11,6 +11,7 @@ export type PollOption = {
     id: string,
     poll_id: string,
     title: string,
+    index: number,
     votes?: number,
 };
 

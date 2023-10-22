@@ -76,7 +76,7 @@ export default function Page() {
                     id={"option-" + index}
                     onChange={handleChange}
                     value={options[index]}
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 dark:text-slate-100 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder={'Enter your option label'}
                 />
                 {(index > 1) &&
@@ -97,7 +97,7 @@ export default function Page() {
             <div className="space-y-12 py-2">
                 <div className="border-b border-gray-900/10 pb-12">
                     <h1 className="text-base font-semibold leading-7 text-slate-900 dark:text-white">Create your Poll</h1>
-                    <p className="mt-1 text-sm leading-6 text-slate-500 dark:text-slate-400">
+                    <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
                         It&apos;s easy and fast to create a Markdown Poll. Just fill the form bellow, save and
                         receive necessary markdown to embed your poll.
                     </p>
@@ -115,7 +115,7 @@ export default function Page() {
                                         id="title"
                                         onChange={handleChange}
                                         value={title}
-                                        className="block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                        className="block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 dark:text-slate-100 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                         placeholder="which ice cream do you prefer?"
                                     />
                                 </div>
@@ -136,7 +136,7 @@ export default function Page() {
                             >
                                 Add option
                             </button>
-                            <p className="mt-3 text-sm leading-6 text-slate-500 dark-text-slate-400">Add up to 5 options to your poll.</p>
+                            <p className="mt-3 text-sm leading-6 text-slate-600 dark-text-slate-300">Add up to 5 options to your poll.</p>
                         </div>
                     </div>
                 </div>

@@ -38,7 +38,7 @@ export default async function Page(props: PollPageProps) {
 
 ${markdownOptionsList}
 <br/>
-<small>Click on the option you want to vote.</small><br><small>Poll created with <a href="{BASE_URL}">md-poll</a></small>`
+<small>Click on the option you want to vote.</small><br><small>Poll created with <a href="${BASE_URL}">md-poll</a></small>`
 
     return (<>
 

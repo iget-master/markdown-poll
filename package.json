@@ -31,7 +31,8 @@
     "react": "^18",
     "react-dom": "^18",
     "snakeize": "^0.1.0",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "validate-color": "^2.2.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.8.0",

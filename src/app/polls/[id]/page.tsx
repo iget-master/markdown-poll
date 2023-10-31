@@ -2,6 +2,7 @@ import { findOneById } from '@/models/poll';
 import Link from "next/link";
 import CopyButton from "@/ui/copy-button";
 import Header from "@/ui/header";
+import Image from "next/image";
 export const dynamic = 'force-dynamic'
 
 type PollPageProps = {
@@ -23,7 +24,7 @@ export default async function Page(props: PollPageProps) {
         return (
             <li key={index} className={"mb-1"} >
                 <Link href={`/api/polls/${poll.id}/options/${index}/vote`}>
-                    <img src={`/api/polls/${poll.id}/options/${index}/img`} />
+                    <Image alt={title} src={`/api/polls/${poll.id}/options/${index}/img`} height={34} width={300}/>
                 </Link>
             </li>
         );
@@ -31,7 +32,7 @@ export default async function Page(props: PollPageProps) {
 
     const markdownOptionsList = poll.options.map(({index, title, votes}: any) => {
         return `<a href="${BASE_URL}/api/polls/${poll.id}/options/${index}/vote?close" target="_blank">
-  <img src="${BASE_URL}/api/polls/${poll.id}/options/${index}/img" alt="${title}"/>
+  <img src="${BASE_URL}/api/polls/${poll.id}/options/${index}/img" alt="${title}" height="300" width="34"/>
 </a>`
     }).join(`\n<br/>\n`);
 

@@ -44,7 +44,7 @@ ${markdownOptionsList}
 
     return (<div className="mt-[90px]">
         <Header/>
-        <h2 className={"pt-4 mb-1 text-xl font-medium"}>Poll preview</h2>
+        <h2 className={"mb-1 text-xl font-medium"}>Poll preview</h2>
         <h3 className={"mb-2"}>Your poll will show like this on markdown: </h3>
         <blockquote className={"ml-2 p-2 bg-slate-100 dark:bg-slate-600"}>
             <h2>{poll.title}</h2>

@@ -1,6 +1,7 @@
 import { findOneById } from '@/models/poll';
 import Link from "next/link";
 import CopyButton from "@/ui/copy-button";
+import Header from "@/ui/header";
 export const dynamic = 'force-dynamic'
 
 type PollPageProps = {
@@ -40,8 +41,8 @@ ${markdownOptionsList}
 <br/>
 <small>Click on the option you want to vote.</small><br/><small>Poll created with <a href="${BASE_URL}">md-poll</a></small>`
 
-    return (<>
-
+    return (<div className="mt-[90px]">
+        <Header/>
         <h2 className={"pt-4 mb-1 text-xl font-medium"}>Poll preview</h2>
         <h3 className={"mb-2"}>Your poll will show like this on markdown: </h3>
         <blockquote className={"ml-2 p-2 bg-slate-100 dark:bg-slate-600"}>
@@ -68,5 +69,5 @@ ${markdownOptionsList}
         <pre id="markdown" className={"ml-2 p-2 bg-slate-100 dark:bg-slate-600 overflow-x-scroll"}>
             {markdown}
         </pre>
-    </>)
+    </div>)
 }

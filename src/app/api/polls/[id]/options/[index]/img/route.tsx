@@ -11,13 +11,14 @@ type PollOptionImageProps = {
     }
 }
 
+const DPI_SCALE = 2;
 const CHECK_ICON = "PHN2ZyB2aWV3Qm94PSIwIDAgNjQgNjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgZmlsbD0iIzRiZDM3YiIgcj0iMzAiLz48cGF0aCBkPSJtNDYgMTQtMjEgMjEuNi03LTcuMi03IDcuMiAxNCAxNC40IDI4LTI4Ljh6IiBmaWxsPSIjZmZmIi8+PC9zdmc+";
-const ICON_SIZE = 24;
+const ICON_SIZE = 24 * DPI_SCALE;
 const ICON_MARGIN = 4;
-const WIDTH = 300;
-const HEIGHT = 34;
-const TEXT_MARGIN = 4;
-const MAX_TEXT_SIZE = HEIGHT - (2 * TEXT_MARGIN);
+const WIDTH = 300 * DPI_SCALE;
+const HEIGHT = 34 * DPI_SCALE;
+const TEXT_MARGIN = 4 * DPI_SCALE;
+const MAX_TEXT_SIZE = (HEIGHT - (2 * TEXT_MARGIN));
 
 const DEFAULT_THEME = {
     bg: '#e0f2fe',
@@ -87,8 +88,8 @@ export async function GET(request: NextRequest, { params: {id, index} }: PollOpt
     ctx.fillRect(0, 0, (optionVotes / totalVotes) * WIDTH, HEIGHT);
 
     ctx.fillStyle = styles.text;
-    ctx.font = styles.textSize + 'px Helvetica';
-    ctx.fillText(text, 8, ((HEIGHT + styles.textSize) / 2) - 3, 250);
+    ctx.font = styles.textSize * 2 + 'px Helvetica';
+    ctx.fillText(text, 8, ((HEIGHT + styles.textSize) / 2), 250);
 
     if (voted) {
         const image = await loadImage(`data:image/png;base64,${CHECK_ICON}`);

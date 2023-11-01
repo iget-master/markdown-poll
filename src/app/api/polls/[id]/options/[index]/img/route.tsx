@@ -89,7 +89,7 @@ export async function GET(request: NextRequest, { params: {id, index} }: PollOpt
 
     ctx.fillStyle = styles.text;
     ctx.font = styles.textSize * 2 + 'px Helvetica';
-    ctx.fillText(text, 8, ((HEIGHT + styles.textSize) / 2), 250);
+    ctx.fillText(text, 8, (DPI_SCALE * (HEIGHT + styles.textSize) / 2), 250);
 
     if (voted) {
         const image = await loadImage(`data:image/png;base64,${CHECK_ICON}`);

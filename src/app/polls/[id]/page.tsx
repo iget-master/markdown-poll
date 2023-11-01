@@ -32,7 +32,7 @@ export default async function Page(props: PollPageProps) {
 
     const markdownOptionsList = poll.options.map(({index, title, votes}: any) => {
         return `<a href="${BASE_URL}/api/polls/${poll.id}/options/${index}/vote?close" target="_blank">
-  <img src="${BASE_URL}/api/polls/${poll.id}/options/${index}/img" alt="${title}" height="300" width="34"/>
+  <img src="${BASE_URL}/api/polls/${poll.id}/options/${index}/img" alt="${title}" width="300" height="34"/>
 </a>`
     }).join(`\n<br/>\n`);
 

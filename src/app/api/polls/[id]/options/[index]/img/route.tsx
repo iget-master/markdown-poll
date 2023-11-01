@@ -18,7 +18,7 @@ const ICON_MARGIN = 4;
 const WIDTH = 300 * DPI_SCALE;
 const HEIGHT = 34 * DPI_SCALE;
 const TEXT_MARGIN = 4 * DPI_SCALE;
-const MAX_TEXT_SIZE = (HEIGHT - (2 * TEXT_MARGIN));
+const MAX_TEXT_SIZE = (HEIGHT - (2 * TEXT_MARGIN)) * DPI_SCALE;
 
 const DEFAULT_THEME = {
     bg: '#e0f2fe',
